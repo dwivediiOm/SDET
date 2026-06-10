@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indore QA/SDET Hiring Report 2026</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2128;
+    --border: #30363d;
+    --accent: #238636;
+    --accent2: #1f6feb;
+    --accent3: #d29922;
+    --accent4: #da3633;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --text-dim: #6e7681;
+    --green: #3fb950;
+    --blue: #58a6ff;
+    --yellow: #e3b341;
+    --red: #f85149;
+    --purple: #bc8cff;
+    --orange: #d18616;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.6; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, #0d1117 0%, #1a2030 50%, #0d1b2a 100%); border-bottom: 1px solid var(--border); padding: 40px 32px 32px; }
+  .header-badge { display: inline-block; background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; margin-bottom: 14px; }
+  .header h1 { font-size: 28px; font-weight: 800; letter-spacing: -.02em; line-height: 1.2; margin-bottom: 8px; }
+  .header h1 span { color: var(--blue); }
+  .header-sub { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
+  .header-stats { display: flex; gap: 24px; flex-wrap: wrap; }
+  .stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; }
+  .stat-box .num { font-size: 22px; font-weight: 800; color: var(--blue); }
+  .stat-box .lbl { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .06em; }
+
+  /* Nav */
+  .toc { background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 32px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .toc a { color: var(--text-muted); text-decoration: none; font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 4px; border: 1px solid transparent; transition: all .15s; }
+  .toc a:hover { color: var(--blue); border-color: var(--border); background: var(--surface2); }
+
+  /* Sections */
+  .section { padding: 32px; border-bottom: 1px solid var(--border); max-width: 1400px; margin: 0 auto; }
+  .section-title { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .section-title h2 { font-size: 18px; font-weight: 700; }
+  .tier-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; padding: 2px 8px; border-radius: 20px; }
+  .tier1 { background: rgba(188,140,255,.15); color: var(--purple); border: 1px solid rgba(188,140,255,.3); }
+  .tier2 { background: rgba(88,166,255,.15); color: var(--blue); border: 1px solid rgba(88,166,255,.3); }
+  .tier3 { background: rgba(63,185,80,.15); color: var(--green); border: 1px solid rgba(63,185,80,.3); }
+  .tier4 { background: rgba(227,179,65,.15); color: var(--yellow); border: 1px solid rgba(227,179,65,.3); }
+  .section-desc { color: var(--text-muted); font-size: 13px; margin-bottom: 20px; }
+
+  /* Company Cards */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px; transition: border-color .15s; position: relative; overflow: hidden; }
+  .card:hover { border-color: var(--accent2); }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .card.tier1::before { background: linear-gradient(90deg, #bc8cff, #7c3aed); }
+  .card.tier2::before { background: linear-gradient(90deg, #58a6ff, #1d4ed8); }
+  .card.tier3::before { background: linear-gradient(90deg, #3fb950, #16a34a); }
+  .card.tier4::before { background: linear-gradient(90deg, #e3b341, #b45309); }
+  .card-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+  .card-name { font-weight: 700; font-size: 15px; color: var(--text); }
+  .hiring-pill { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+  .hiring-yes { background: rgba(63,185,80,.15); color: var(--green); border: 1px solid rgba(63,185,80,.3); }
+  .hiring-no { background: rgba(110,118,129,.12); color: var(--text-dim); border: 1px solid var(--border); }
+  .hiring-remote { background: rgba(88,166,255,.15); color: var(--blue); border: 1px solid rgba(88,166,255,.3); }
+  .card-type { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
+  .card-row { display: flex; align-items: flex-start; gap: 6px; margin-bottom: 5px; font-size: 12px; }
+  .card-row .lbl { color: var(--text-dim); min-width: 80px; flex-shrink: 0; }
+  .card-row .val { color: var(--text); }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; }
+  .tag { font-size: 10px; padding: 2px 7px; border-radius: 4px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+  .tag.hot { background: rgba(218,54,51,.12); border-color: rgba(218,54,51,.3); color: var(--red); }
+  .tag.blue { background: rgba(88,166,255,.1); border-color: rgba(88,166,255,.25); color: var(--blue); }
+  .tag.green { background: rgba(63,185,80,.1); border-color: rgba(63,185,80,.25); color: var(--green); }
+  .tag.yellow { background: rgba(227,179,65,.1); border-color: rgba(227,179,65,.25); color: var(--yellow); }
+  .card-link { display: inline-block; margin-top: 12px; font-size: 11px; color: var(--blue); text-decoration: none; border: 1px solid rgba(88,166,255,.3); padding: 3px 10px; border-radius: 4px; }
+  .card-link:hover { background: rgba(88,166,255,.1); }
+
+  /* Master Table */
+  .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  thead { background: var(--surface2); }
+  thead th { padding: 10px 14px; text-align: left; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); white-space: nowrap; border-bottom: 1px solid var(--border); }
+  tbody tr { border-bottom: 1px solid var(--border); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--surface2); }
+  tbody td { padding: 9px 14px; vertical-align: middle; }
+  .status-yes { color: var(--green); font-weight: 700; }
+  .status-no { color: var(--text-dim); }
+  .status-remote { color: var(--blue); font-weight: 700; }
+  .tech-chips { display: flex; flex-wrap: wrap; gap: 3px; }
+  .chip { font-size: 10px; padding: 1px 6px; border-radius: 3px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+
+  /* Salary Section */
+  .salary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .salary-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+  .salary-card .role { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+  .salary-card .range { font-size: 20px; font-weight: 800; color: var(--green); }
+  .salary-card .unit { font-size: 11px; color: var(--text-dim); }
+  .salary-card .note { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
+
+  /* Special Lists */
+  .list-section { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .list-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+  .list-card h3 { font-size: 13px; font-weight: 700; color: var(--blue); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .list-card ol { padding-left: 18px; }
+  .list-card li { font-size: 12px; color: var(--text); margin-bottom: 5px; }
+  .list-card li span { color: var(--text-muted); font-size: 11px; }
+
+  /* Tips */
+  .tips { background: rgba(88,166,255,.06); border: 1px solid rgba(88,166,255,.2); border-radius: 10px; padding: 20px; }
+  .tips h3 { color: var(--blue); font-size: 14px; margin-bottom: 12px; }
+  .tip-item { display: flex; gap: 10px; margin-bottom: 10px; font-size: 13px; }
+  .tip-icon { color: var(--blue); flex-shrink: 0; margin-top: 1px; }
+
+  /* Alerts */
+  .alert { border-radius: 8px; padding: 14px 18px; margin-bottom: 16px; font-size: 13px; }
+  .alert-info { background: rgba(88,166,255,.08); border: 1px solid rgba(88,166,255,.25); color: var(--blue); }
+  .alert-warn { background: rgba(227,179,65,.08); border: 1px solid rgba(227,179,65,.25); color: var(--yellow); }
+
+  @media(max-width:640px) {
+    .header { padding: 24px 16px; }
+    .section { padding: 20px 16px; }
+    .toc { padding: 10px 16px; }
+    .header-stats { gap: 10px; }
+    .cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-badge">Research Report · June 2026</div>
+  <h1>QA / SDET Hiring Landscape<br><span>Indore, Madhya Pradesh</span></h1>
+  <div class="header-sub">Comprehensive guide for Java + Selenium automation professionals with 5+ years of experience</div>
+  <div class="header-stats">
+    <div class="stat-box"><div class="num">50+</div><div class="lbl">Companies Profiled</div></div>
+    <div class="stat-box"><div class="num">~98</div><div class="lbl">Selenium Jobs on Naukri</div></div>
+    <div class="stat-box"><div class="num">4 Tiers</div><div class="lbl">Company Categories</div></div>
+    <div class="stat-box"><div class="num">₹8–20 LPA</div><div class="lbl">Typical SDET Range</div></div>
+  </div>
+</div>
+
+<nav class="toc">
+  <a href="#master">📊 Master Table</a>
+  <a href="#tier1">🏢 Tier 1 MNCs</a>
+  <a href="#tier2">💡 Tier 2 Product</a>
+  <a href="#tier3">🔧 Tier 3 Services</a>
+  <a href="#tier4">🚀 Tier 4 Startups</a>
+  <a href="#top25hiring">🎯 Top 25 Hiring</a>
+  <a href="#top25team">🏆 Top 25 QA Teams</a>
+  <a href="#salary">💰 Salary Guide</a>
+  <a href="#remote">🌐 Remote Friendly</a>
+  <a href="#tips">💡 Strategy Tips</a>
+</nav>
+
+<!-- ============ CONTEXT ============ -->
+<div class="section" id="context">
+  <div class="alert alert-info">ℹ️ <strong>Data Note:</strong> Naukri lists ~98 active Selenium openings in Indore as of June 2026. This report combines data from LinkedIn, Naukri, Glassdoor, Instahyre, and company career pages. Hiring status can change rapidly — always verify directly on company career pages before applying.</div>
+  <div class="alert alert-warn">⚡ <strong>Market Context:</strong> Indore's IT sector exported ₹4,038.6 crore in FY 2024–25 (7% YoY growth). TCS, Infosys, and IBM maintain offices here alongside strong local players (Impetus, InfoBeans, Softude/Systematix, YASH). The SDET market is hot — India shows 2,496+ Playwright + Selenium vacancies nationally, with Indore growing steadily as a remote-work destination.</div>
+</div>
+
+<!-- ============ MASTER TABLE ============ -->
+<div class="section" id="master">
+  <div class="section-title"><h2>📊 Master Company Table</h2></div>
+  <div class="section-desc">All profiled companies — QA/SDET presence, current hiring status, tech stack, and career links.</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Company</th>
+          <th>Type</th>
+          <th>Indore Office</th>
+          <th>Hiring Now</th>
+          <th>Role / Title</th>
+          <th>Exp (Yrs)</th>
+          <th>Work Mode</th>
+          <th>Key Tech Stack</th>
+          <th>Careers Page</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><strong>TCS</strong></td><td>MNC</td><td>✅ Crystal IT Park</td><td class="status-yes">✅ YES</td><td>Software Test Engineer (Automation)</td><td>4–10</td><td>Hybrid/WFO</td><td><div class="tech-chips"><span class="chip">Java</span><span class="chip">Selenium</span><span class="chip">TestNG</span><span class="chip">RestAssured</span><span class="chip">Jenkins</span></div></td><td><a class="card-link" href="https://www.tcs.com/careers/india" target="_blank">tcs.com/careers</a></td></tr>
+        <tr><td>2</td><td><strong>Infosys</strong></td><td>MNC</td><td>✅ Crystal IT Park</td><td class="status-yes">✅ YES</td><td>SDET / Test Lead / Automation Test Lead</td><td>4–8</td><td>Hybrid/WFO</td><td><div class="tech-chips"><span class="chip">Java</span><span class="chip">Selenium</span><span class="chip">TestNG</span><span class="chip">Cucumber</span><span class="chip">CI/CD</span></div></td><td><a class="card-link" href="https://www.infosys.com/careers.html" target="_blank">infosys.com/careers</a></td></tr>
+        <tr><td>3</td><td><strong>Cognizant</strong></td><td>MNC</td><td>✅ Indore</td><td class="status-yes">✅ YES</td><td>QA Automation Engineer / SDET</td><td>5–10</td><td>Hybrid</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Java</span><span class="chip">Playwright</span><span class="chip">Postman</span><span class="chip">SQL</span></div></td><td><a class="card-link" href="https://careers.cognizant.com" target="_blank">careers.cognizant.com</a></td></tr>
+        <tr><td>4</td><td><strong>Accenture</strong></td><td>MNC</td><td>✅ Indore</td><td class="status-yes">✅ YES</td><td>QA Automation / Test Engineer</td><td>3–12</td><td>Hybrid</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Java</span><span class="chip">TestNG</span><span class="chip">DevOps</span><span class="chip">AWS</span></div></td><td><a class="card-link" href="https://www.accenture.com/in-en/careers" target="_blank">accenture.com/careers</a></td></tr>
+        <tr><td>5</td><td><strong>IBM</strong></td><td>MNC</td><td>✅ Indore</td><td class="status-yes">✅ YES</td><td>QA Engineer / Test Automation</td><td>5–10</td><td>Hybrid</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Java</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">CI/CD</span></div></td><td><a class="card-link" href="https://www.ibm.com/careers/in-en" target="_blank">ibm.com/careers</a></td></tr>
+        <tr><td>6</td><td><strong>Capgemini</strong></td><td>MNC</td><td>✅ Indore</td><td class="status-yes">✅ YES</td><td>Senior Consultant – Test Automation</td><td>4–6</td><td>Hybrid/WFO</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Java</span><span class="chip">Maven</span><span class="chip">Jenkins</span><span class="chip">BDD</span></div></td><td><a class="card-link" href="https://www.capgemini.com/in-en/careers/" target="_blank">capgemini.com/careers</a></td></tr>
+        <tr><td>7</td><td><strong>YASH Technologies</strong></td><td>MNC / Enterprise</td><td>✅ Headquarters Indore</td><td class="status-yes">✅ YES</td><td>QA Automation Engineer / Test Engineer</td><td>5+</td><td>Hybrid/WFO</td><td><div class="tech-chips"><span class="chip">Java</span><span class="chip">Selenium</span><span class="chip">SAP Testing</span><span class="chip">JUnit</span><span class="chip">Azure</span></div></td><td><a class="card-link" href="https://careers.yash.com/" target="_blank">careers.yash.com</a></td></tr>
+        <tr><td>8</td><td><strong>Impetus Technologies</strong></td><td>Product Engineering</td><td>✅ HQ – Indore</td><td class="status-yes">✅ YES</td><td>SDET / QA Automation / Lead QE</td><td>5–10</td><td>Hybrid/WFO</td><td><div class="tech-chips"><span class="chip">Java</span><span class="chip">Selenium</span><span class="chip">TestNG</span><span class="chip">Docker</span><span class="chip">AWS</span><span class="chip">Kafka</span></div></td><td><a class="card-link" href="https://www.impetus.com/careers/" target="_blank">impetus.com/careers</a></td></tr>
+        <tr><td>9</td><td><strong>InfoBeans Technologies</strong></td><td>IT Services / SaaS</td><td>✅ HQ – Crystal IT Park, Indore</td><td class="status-yes">✅ YES</td><td>Java Automation Engineer / SDET / QA Lead</td><td>6–10</td><td>WFO/Hybrid</td><td><div class="tech-chips"><span class="chip">Java</span><span class="chip">Selenium</span><span class="chip">Playwright</span><span class="chip">CI/CD</span><span class="chip">Azure</span></div></td><td><a class="card-link" href="https://infobeans.com/current-openings/" target="_blank">infobeans.com/jobs</a></td></tr>
+        <tr><td>10</td><td><strong>Softude (Systematix)</strong></td><td>IT Services</td><td>✅ HQ – Indore (Shalimar Township)</td><td class="status-yes">✅ YES</td><td>QA Automation Engineer / SDET</td><td>5+</td><td>Hybrid</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Java</span><span class="chip">TestNG</span><span class="chip">REST API</span><span class="chip">CI/CD</span></div></td><td><a class="card-link" href="https://www.softude.com/career/" target="_blank">softude.com/career</a></td></tr>
+        <tr><td>11</td><td><strong>Syntel (Atos)</strong></td><td>MNC</td><td>✅ Indore</td><td class="status-yes">✅ YES</td><td>QA / Automation Test Engineer</td><td>5–8</td><td>Hybrid</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Java</span><span class="chip">TestNG</span><span class="chip">BDD</span></div></td><td><a class="card-link" href="https://www.atos.net/en/careers" target="_blank">atos.net/careers</a></td></tr>
+        <tr><td>12</td><td><strong>Diaspark</strong></td><td>IT Services / Product</td><td>✅ Indore</td><td class="status-yes">✅ YES</td><td>QA Automation / Senior QA Engineer</td><td>4–8</td><td>Hybrid</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Java</span><span class="chip">REST API</span><span class="chip">Agile</span></div></td><td><a class="card-link" href="https://diaspark.com/careers" target="_blank">diaspark.com/careers</a></td></tr>
+        <tr><td>13</td><td><strong>NimbleWork (Digité)</strong></td><td>SaaS / Product</td><td>✅ Indore</td><td class="status-yes">✅ YES</td><td>Test Automation Engineer / SDET</td><td>3–7</td><td>Hybrid</td><td><div class="tech-chips"><span class="chip">Java</span><span class="chip">Selenium</span><span class="chip">Cucumber</span><span class="chip">Jenkins</span><span class="chip">Appium</span></div></td><td><a class="card-link" href="https://www.nimblework.com/careers/" target="_blank">nimblework.com/careers</a></td></tr>
+        <tr><td>14</td><td><strong>Deqode</strong></td><td>Product Engineering / Startup</td><td>✅ Indore</td><td class="status-yes">✅ YES</td><td>QA Engineer / Automation Engineer</td><td>3–7</td><td>Hybrid</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Java</span><span class="chip">REST API</span><span class="chip">Docker</span></div></td><td><a class="card-link" href="https://deqode.com/careers/" target="_blank">deqode.com/careers</a></td></tr>
+        <tr><td>15</td><td><strong>Cyber Infrastructure (CIS)</strong></td><td>IT Services</td><td>✅ Electronic Complex, Indore</td><td class="status-yes">✅ YES</td><td>QA Automation Engineer</td><td>4–8</td><td>WFO</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Java</span><span class="chip">TestNG</span><span class="chip">SQL</span></div></td><td><a class="card-link" href="https://www.cyberinfrastructure.com/careers" target="_blank">cyberinfrastructure.com</a></td></tr>
+        <tr><td>16</td><td><strong>Persistent Systems</strong></td><td>MNC / Product Eng</td><td>✅ Indore (Nagpur Rd area)</td><td class="status-yes">✅ YES</td><td>SDET / QA Lead / Senior QA Automation</td><td>5–10</td><td>Hybrid</td><td><div class="tech-chips"><span class="chip">Java</span><span class="chip">Selenium</span><span class="chip">Playwright</span><span class="chip">AWS</span><span class="chip">Jenkins</span></div></td><td><a class="card-link" href="https://careers.persistent.com" target="_blank">careers.persistent.com</a></td></tr>
+        <tr><td>17</td><td><strong>LTIMindtree</strong></td><td>MNC</td><td>✅ Indore</td><td class="status-yes">✅ YES</td><td>Test Automation Lead / SDET</td><td>5–10</td><td>Hybrid</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Java</span><span class="chip">TestNG</span><span class="chip">Cypress</span><span class="chip">Azure</span></div></td><td><a class="card-link" href="https://www.ltimindtree.com/careers/" target="_blank">ltimindtree.com/careers</a></td></tr>
+        <tr><td>18</td><td><strong>Tech Mahindra</strong></td><td>MNC</td><td>✅ Indore</td><td class="status-yes">✅ YES</td><td>QA Automation / Senior QA Engineer</td><td>4–8</td><td>Hybrid</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Java</span><span class="chip">REST API</span><span class="chip">JMeter</span></div></td><td><a class="card-link" href="https://careers.techmahindra.com" target="_blank">careers.techmahindra.com</a></td></tr>
+        <tr><td>19</td><td><strong>HCLTech</strong></td><td>MNC</td><td>✅ Indore</td><td class="status-yes">✅ YES</td><td>Test Engineer / SDET / QA Lead</td><td>5–10</td><td>Hybrid/WFO</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Java</span><span class="chip">Appium</span><span class="chip">Jenkins</span><span class="chip">AWS</span></div></td><td><a class="card-link" href="https://www.hcltech.com/careers" target="_blank">hcltech.com/careers</a></td></tr>
+        <tr><td>20</td><td><strong>Wipro</strong></td><td>MNC</td><td>✅ Indore</td><td class="status-yes">✅ YES</td><td>QA Automation Engineer / Test Lead</td><td>5–10</td><td>Hybrid</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Java</span><span class="chip">TestNG</span><span class="chip">CI/CD</span></div></td><td><a class="card-link" href="https://careers.wipro.com" target="_blank">careers.wipro.com</a></td></tr>
+        <tr><td>21</td><td><strong>Hiteshi Infotech</strong></td><td>IT Services</td><td>✅ Vijay Nagar, Indore</td><td class="status-no">⚪ Check</td><td>QA Tester / Automation Engineer</td><td>3–6</td><td>WFO</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Manual</span><span class="chip">API Testing</span></div></td><td><a class="card-link" href="https://www.hiteshi.com/career" target="_blank">hiteshi.com/career</a></td></tr>
+        <tr><td>22</td><td><strong>TechInfini Solutions</strong></td><td>IT Services</td><td>✅ Crystal IT Park, Indore</td><td class="status-no">⚪ Check</td><td>QA Engineer</td><td>3–6</td><td>WFO</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Java</span><span class="chip">Agile</span></div></td><td><a class="card-link" href="https://techinfini.com/career" target="_blank">techinfini.com</a></td></tr>
+        <tr><td>23</td><td><strong>Mango IT Solutions</strong></td><td>IT Services</td><td>✅ Old Palasia, Indore</td><td class="status-no">⚪ Check</td><td>QA / Test Automation Engineer</td><td>2–5</td><td>WFO</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Manual</span></div></td><td><a class="card-link" href="https://mangoitsolutions.com/career" target="_blank">mangoitsolutions.com</a></td></tr>
+        <tr><td>24</td><td><strong>Codezilla</strong></td><td>Startup / Product</td><td>✅ Indore</td><td class="status-no">⚪ Check</td><td>QA Engineer (Full-cycle)</td><td>2–5</td><td>WFO</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Manual</span></div></td><td><a class="card-link" href="#" target="_blank">codezilla.in</a></td></tr>
+        <tr><td>25</td><td><strong>ControlF5</strong></td><td>Web/Mobile Dev</td><td>✅ Indore</td><td class="status-no">⚪ Check</td><td>QA Tester</td><td>2–4</td><td>WFO</td><td><div class="tech-chips"><span class="chip">Manual</span><span class="chip">Selenium basics</span></div></td><td><a class="card-link" href="https://controlf5.com/careers" target="_blank">controlf5.com</a></td></tr>
+        <!-- Remote/Pan-India -->
+        <tr><td>26</td><td><strong>Hexaware Technologies</strong></td><td>MNC</td><td>⚡ Pan-India/Remote</td><td class="status-remote">🌐 REMOTE</td><td>Test Lead – Selenium/Playwright</td><td>5–10</td><td>Remote/Hybrid</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Playwright</span><span class="chip">Java</span><span class="chip">BDD</span></div></td><td><a class="card-link" href="https://hexaware.com/careers/" target="_blank">hexaware.com/careers</a></td></tr>
+        <tr><td>27</td><td><strong>Deloitte India</strong></td><td>MNC</td><td>⚡ Pan-India/Remote</td><td class="status-yes">✅ YES</td><td>Senior Consultant – Test Automation</td><td>4–6</td><td>Hybrid</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Java</span><span class="chip">TestNG</span><span class="chip">Maven</span><span class="chip">BDD</span></div></td><td><a class="card-link" href="https://careers.deloitte.com" target="_blank">careers.deloitte.com</a></td></tr>
+        <tr><td>28</td><td><strong>Thoughtworks</strong></td><td>Product Eng / Consultancy</td><td>⚡ Remote from Indore</td><td class="status-remote">🌐 REMOTE</td><td>QA Lead / SDET / Test Architect</td><td>5–12</td><td>Remote/Hybrid</td><td><div class="tech-chips"><span class="chip">Java</span><span class="chip">Selenium</span><span class="chip">Cypress</span><span class="chip">BDD</span><span class="chip">TDD</span></div></td><td><a class="card-link" href="https://www.thoughtworks.com/careers/india" target="_blank">thoughtworks.com/careers</a></td></tr>
+        <tr><td>29</td><td><strong>Nagarro</strong></td><td>Product Eng</td><td>⚡ Pan-India/Remote</td><td class="status-remote">🌐 REMOTE</td><td>QA Automation / SDET</td><td>5–10</td><td>Remote/Hybrid</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Java</span><span class="chip">Playwright</span><span class="chip">AWS</span></div></td><td><a class="card-link" href="https://www.nagarro.com/en/careers" target="_blank">nagarro.com/careers</a></td></tr>
+        <tr><td>30</td><td><strong>BrowserStack</strong></td><td>SaaS / Product</td><td>⚡ Remote India</td><td class="status-remote">🌐 REMOTE</td><td>SDET / Senior SDET</td><td>4–8</td><td>Remote</td><td><div class="tech-chips"><span class="chip">Java</span><span class="chip">Selenium</span><span class="chip">Playwright</span><span class="chip">Appium</span><span class="chip">Cypress</span></div></td><td><a class="card-link" href="https://www.browserstack.com/careers" target="_blank">browserstack.com/careers</a></td></tr>
+        <tr><td>31</td><td><strong>Upwork / Freelance Platforms</strong></td><td>Remote</td><td>⚡ Remote</td><td class="status-remote">🌐 REMOTE</td><td>QA Automation Consultant</td><td>5+</td><td>Remote</td><td><div class="tech-chips"><span class="chip">Java</span><span class="chip">Selenium</span><span class="chip">Any</span></div></td><td><a class="card-link" href="https://www.upwork.com" target="_blank">upwork.com</a></td></tr>
+        <tr><td>32</td><td><strong>Sophos</strong></td><td>Security SaaS</td><td>⚡ Pan-India/Remote</td><td class="status-remote">🌐 REMOTE</td><td>SDET / Senior QA Automation</td><td>5–8</td><td>Remote/Hybrid</td><td><div class="tech-chips"><span class="chip">Java</span><span class="chip">Selenium</span><span class="chip">Security Testing</span><span class="chip">Docker</span></div></td><td><a class="card-link" href="https://www.sophos.com/en-us/company/careers" target="_blank">sophos.com/careers</a></td></tr>
+        <tr><td>33</td><td><strong>GlobalLogic (Hitachi)</strong></td><td>Product Eng</td><td>⚡ Pan-India/Remote</td><td class="status-remote">🌐 REMOTE</td><td>Test Engineer / SDET</td><td>5–10</td><td>Remote/Hybrid</td><td><div class="tech-chips"><span class="chip">Java</span><span class="chip">Selenium</span><span class="chip">Playwright</span><span class="chip">AWS</span></div></td><td><a class="card-link" href="https://www.globallogic.com/careers/" target="_blank">globallogic.com/careers</a></td></tr>
+        <tr><td>34</td><td><strong>Mphasis</strong></td><td>MNC</td><td>⚡ Pan-India</td><td class="status-yes">✅ YES</td><td>QA Automation Engineer</td><td>5–8</td><td>Hybrid</td><td><div class="tech-chips"><span class="chip">Selenium</span><span class="chip">Java</span><span class="chip">TestNG</span></div></td><td><a class="card-link" href="https://careers.mphasis.com" target="_blank">careers.mphasis.com</a></td></tr>
+        <tr><td>35</td><td><strong>Newt Global</strong></td><td>Product / Data</td><td>⚡ Remote India</td><td class="status-remote">🌐 REMOTE</td><td>QA Automation Engineer</td><td>4–8</td><td>Remote</td><td><div class="tech-chips"><span class="chip">Java</span><span class="chip">Selenium</span><span class="chip">SQL</span></div></td><td><a class="card-link" href="#" target="_blank">newtglobal.com</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ TIER 1 ============ -->
+<div class="section" id="tier1">
+  <div class="section-title">
+    <h2>🏢 Tier 1 – Large MNCs & Enterprise Companies</h2>
+    <span class="tier-badge tier1">Tier 1</span>
+  </div>
+  <div class="section-desc">Global companies with established Indore delivery centres hiring SDET/QA Automation with strong QA teams, structured growth paths, and competitive packages.</div>
+  <div class="cards">
+
+    <div class="card tier1">
+      <div class="card-head"><div class="card-name">TCS (Tata Consultancy Services)</div><span class="hiring-pill hiring-yes">Actively Hiring</span></div>
+      <div class="card-type">MNC · IT Services · 600,000+ employees globally</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Crystal IT Park, Bhawarkua Rd</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">Software Test Engineer – Automation Testing</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">4–10 years (Selenium + Java)</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Hybrid / WFO</span></div>
+      <div class="card-row"><span class="lbl">Salary Est.</span><span class="val">₹8–18 LPA (5–10 yrs)</span></div>
+      <div class="card-row"><span class="lbl">QA Team</span><span class="val">Large – dedicated QA unit in Indore</span></div>
+      <div class="tags">
+        <span class="tag blue">Java</span><span class="tag blue">Selenium</span><span class="tag blue">TestNG</span><span class="tag green">RestAssured</span><span class="tag">Jenkins</span><span class="tag">Maven</span>
+      </div>
+      <a class="card-link" href="https://www.tcs.com/careers/india/lateral-hiring" target="_blank">Apply at TCS Lateral Hiring →</a>
+    </div>
+
+    <div class="card tier1">
+      <div class="card-head"><div class="card-name">Infosys</div><span class="hiring-pill hiring-yes">Actively Hiring</span></div>
+      <div class="card-type">MNC · IT Services · 250,000+ employees</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Crystal IT Park, Indore</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">SDET / Automation Test Lead / Technical Test Lead</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">4–8 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Hybrid</span></div>
+      <div class="card-row"><span class="lbl">Salary Est.</span><span class="val">₹9–20 LPA (5–8 yrs)</span></div>
+      <div class="card-row"><span class="lbl">SDET Path</span><span class="val">Strong – labeled "SDET" on job listings</span></div>
+      <div class="tags">
+        <span class="tag blue">Java</span><span class="tag blue">Selenium</span><span class="tag blue">TestNG</span><span class="tag green">Cucumber</span><span class="tag">SQL</span><span class="tag">CI/CD</span>
+      </div>
+      <a class="card-link" href="https://www.infosys.com/careers.html" target="_blank">Apply at Infosys →</a>
+    </div>
+
+    <div class="card tier1">
+      <div class="card-head"><div class="card-name">Accenture</div><span class="hiring-pill hiring-yes">Actively Hiring</span></div>
+      <div class="card-type">MNC · Consulting / IT Services · 700,000+ employees</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Indore (multiple delivery centres)</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">QA Automation / Test Engineer (3–12 yrs)</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">3–12 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Hybrid</span></div>
+      <div class="card-row"><span class="lbl">Salary Est.</span><span class="val">₹10–22 LPA (senior)</span></div>
+      <div class="tags">
+        <span class="tag blue">Selenium</span><span class="tag blue">Java</span><span class="tag">TestNG</span><span class="tag green">AWS</span><span class="tag">DevOps</span><span class="tag">Appium</span>
+      </div>
+      <a class="card-link" href="https://www.accenture.com/in-en/careers" target="_blank">Apply at Accenture →</a>
+    </div>
+
+    <div class="card tier1">
+      <div class="card-head"><div class="card-name">Cognizant</div><span class="hiring-pill hiring-yes">Actively Hiring</span></div>
+      <div class="card-type">MNC · IT Services · 350,000+ employees</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Indore delivery centre</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">QA Automation / SDET</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">5–10 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Hybrid</span></div>
+      <div class="card-row"><span class="lbl">Salary Est.</span><span class="val">₹9–18 LPA</span></div>
+      <div class="tags">
+        <span class="tag blue">Selenium</span><span class="tag blue">Java</span><span class="tag green">Playwright</span><span class="tag">Postman</span><span class="tag">SQL</span>
+      </div>
+      <a class="card-link" href="https://careers.cognizant.com" target="_blank">Apply at Cognizant →</a>
+    </div>
+
+    <div class="card tier1">
+      <div class="card-head"><div class="card-name">YASH Technologies</div><span class="hiring-pill hiring-yes">14 Jobs in Indore</span></div>
+      <div class="card-type">MNC – HQ Indore · SAP/Enterprise IT · 12,000+ employees</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Headquarters – Indore</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">QA / Test Automation Engineer</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">5+ years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Hybrid/WFO</span></div>
+      <div class="card-row"><span class="lbl">Salary Est.</span><span class="val">₹8–16 LPA</span></div>
+      <div class="card-row"><span class="lbl">Domain</span><span class="val">SAP, ERP, Enterprise – great domain exposure</span></div>
+      <div class="tags">
+        <span class="tag blue">Java</span><span class="tag blue">Selenium</span><span class="tag">JUnit</span><span class="tag green">Azure</span><span class="tag">SAP Testing</span>
+      </div>
+      <a class="card-link" href="https://careers.yash.com/" target="_blank">Apply at YASH Careers →</a>
+    </div>
+
+    <div class="card tier1">
+      <div class="card-head"><div class="card-name">Persistent Systems</div><span class="hiring-pill hiring-yes">Actively Hiring</span></div>
+      <div class="card-type">MNC · Product Engineering · 20,000+ employees</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Indore (plus Nagpur Rd SEZ area)</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">SDET / Senior QA Automation / QA Lead</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">5–10 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Hybrid</span></div>
+      <div class="card-row"><span class="lbl">Salary Est.</span><span class="val">₹12–22 LPA (senior)</span></div>
+      <div class="card-row"><span class="lbl">Why Apply</span><span class="val">Strong SDET culture; uses Playwright + Selenium</span></div>
+      <div class="tags">
+        <span class="tag blue">Java</span><span class="tag blue">Selenium</span><span class="tag green">Playwright</span><span class="tag green">AWS</span><span class="tag">Jenkins</span><span class="tag hot">SDET Path</span>
+      </div>
+      <a class="card-link" href="https://careers.persistent.com" target="_blank">Apply at Persistent →</a>
+    </div>
+
+    <div class="card tier1">
+      <div class="card-head"><div class="card-name">LTIMindtree</div><span class="hiring-pill hiring-yes">Actively Hiring</span></div>
+      <div class="card-type">MNC · IT Services · 80,000+ employees</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Indore delivery centre</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">Test Automation Lead / Senior SDET</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">5–10 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Hybrid</span></div>
+      <div class="card-row"><span class="lbl">Salary Est.</span><span class="val">₹11–20 LPA</span></div>
+      <div class="tags">
+        <span class="tag blue">Selenium</span><span class="tag blue">Java</span><span class="tag green">Cypress</span><span class="tag">TestNG</span><span class="tag green">Azure</span>
+      </div>
+      <a class="card-link" href="https://www.ltimindtree.com/careers/" target="_blank">Apply at LTIMindtree →</a>
+    </div>
+
+    <div class="card tier1">
+      <div class="card-head"><div class="card-name">IBM India</div><span class="hiring-pill hiring-yes">Actively Hiring</span></div>
+      <div class="card-type">MNC · Technology & Consulting · 300,000+ globally</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Indore (IBM delivery centre)</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">QA Engineer / Test Automation</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">5–10 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Hybrid</span></div>
+      <div class="card-row"><span class="lbl">Salary Est.</span><span class="val">₹10–20 LPA</span></div>
+      <div class="tags">
+        <span class="tag blue">Selenium</span><span class="tag blue">Java</span><span class="tag green">Docker</span><span class="tag green">Kubernetes</span><span class="tag">CI/CD</span>
+      </div>
+      <a class="card-link" href="https://www.ibm.com/careers/in-en" target="_blank">Apply at IBM →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TIER 2 ============ -->
+<div class="section" id="tier2">
+  <div class="section-title">
+    <h2>💡 Tier 2 – Product-Based & SaaS Companies</h2>
+    <span class="tier-badge tier2">Tier 2</span>
+  </div>
+  <div class="section-desc">Product companies with Indore offices offering SDET/QA Lead roles, better engineering culture, and performance-linked pay. Ideal for SDET career path aspirants.</div>
+  <div class="cards">
+
+    <div class="card tier2">
+      <div class="card-head"><div class="card-name">Impetus Technologies</div><span class="hiring-pill hiring-yes">40+ Jobs (Naukri)</span></div>
+      <div class="card-type">Product Engineering · Cloud & Data · HQ Indore · 1,200+ employees</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">2nd Floor, Crystal IT Park, Bhawarkua Rd</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">SDET / Lead QE / QA Automation Engineer</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">5–10 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Hybrid/WFO</span></div>
+      <div class="card-row"><span class="lbl">Salary Est.</span><span class="val">₹10–22 LPA (strong for Indore)</span></div>
+      <div class="card-row"><span class="lbl">Why Apply</span><span class="val">Fortune 500 clients, Data/Cloud stack, top SDET culture in Indore</span></div>
+      <div class="tags">
+        <span class="tag hot">Top Pick</span><span class="tag blue">Java</span><span class="tag blue">Selenium</span><span class="tag">TestNG</span><span class="tag green">Docker</span><span class="tag green">AWS</span><span class="tag">Kafka</span>
+      </div>
+      <a class="card-link" href="https://www.impetus.com/careers/" target="_blank">Apply at Impetus →</a>
+    </div>
+
+    <div class="card tier2">
+      <div class="card-head"><div class="card-name">InfoBeans Technologies</div><span class="hiring-pill hiring-yes">Actively Hiring</span></div>
+      <div class="card-type">IT Services / SaaS · HQ Indore · 1,500+ employees · CMMI L3</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Crystal IT Park, Bhawarkua Rd, Indore</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">Java Automation Engineer / SDET / QA Lead</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">6–10 years (Instahyre listing)</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">WFO / Hybrid</span></div>
+      <div class="card-row"><span class="lbl">Salary Est.</span><span class="val">₹8–18 LPA</span></div>
+      <div class="card-row"><span class="lbl">Why Apply</span><span class="val">Dedicated QA Automation practice; hosts BrowserStack meetups; Playwright + CI/CD culture</span></div>
+      <div class="tags">
+        <span class="tag hot">Top Pick</span><span class="tag blue">Java</span><span class="tag blue">Selenium</span><span class="tag green">Playwright</span><span class="tag">CI/CD</span><span class="tag green">Azure</span><span class="tag yellow">SDET Path</span>
+      </div>
+      <a class="card-link" href="https://infobeans.com/current-openings/" target="_blank">Apply at InfoBeans →</a>
+    </div>
+
+    <div class="card tier2">
+      <div class="card-head"><div class="card-name">NimbleWork (formerly Digité)</div><span class="hiring-pill hiring-yes">Active</span></div>
+      <div class="card-type">SaaS / Project Management Product · Indore HQ</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Indore (HQ)</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">Test Automation Engineer / SDET</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">3–7 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Hybrid</span></div>
+      <div class="card-row"><span class="lbl">Why Apply</span><span class="val">Product company; real SDET work; Appium + Cucumber stack</span></div>
+      <div class="tags">
+        <span class="tag blue">Java</span><span class="tag blue">Selenium</span><span class="tag green">Cucumber</span><span class="tag">Appium</span><span class="tag">Jenkins</span>
+      </div>
+      <a class="card-link" href="https://www.nimblework.com/careers/" target="_blank">Apply at NimbleWork →</a>
+    </div>
+
+    <div class="card tier2">
+      <div class="card-head"><div class="card-name">Thoughtworks</div><span class="hiring-pill hiring-remote">Remote/Hybrid</span></div>
+      <div class="card-type">Product Engineering / Consultancy · Hire from Indore</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Remote from Indore accepted</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">QA Lead / SDET / Test Architect</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">5–12 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Remote/Hybrid</span></div>
+      <div class="card-row"><span class="lbl">Salary Est.</span><span class="val">₹18–35 LPA (senior)</span></div>
+      <div class="card-row"><span class="lbl">Why Apply</span><span class="val">Best engineering culture; TDD/BDD first; leads QA Architect market</span></div>
+      <div class="tags">
+        <span class="tag hot">Premium Pay</span><span class="tag blue">Java</span><span class="tag blue">Selenium</span><span class="tag green">Cypress</span><span class="tag green">Playwright</span><span class="tag">TDD</span><span class="tag">BDD</span>
+      </div>
+      <a class="card-link" href="https://www.thoughtworks.com/careers/india" target="_blank">Apply at Thoughtworks →</a>
+    </div>
+
+    <div class="card tier2">
+      <div class="card-head"><div class="card-name">BrowserStack</div><span class="hiring-pill hiring-remote">Remote India</span></div>
+      <div class="card-type">SaaS / Test Infrastructure Product · Fully Remote India</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Remote (Indore eligible)</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">SDET / Senior SDET</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">4–8 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Fully Remote</span></div>
+      <div class="card-row"><span class="lbl">Salary Est.</span><span class="val">₹18–30 LPA</span></div>
+      <div class="card-row"><span class="lbl">Why Apply</span><span class="val">QA-focused product company; cutting-edge stack; hosted Indore meetup</span></div>
+      <div class="tags">
+        <span class="tag hot">Highest Pay Tier</span><span class="tag blue">Java</span><span class="tag blue">Selenium</span><span class="tag green">Playwright</span><span class="tag">Appium</span><span class="tag green">Cypress</span>
+      </div>
+      <a class="card-link" href="https://www.browserstack.com/careers" target="_blank">Apply at BrowserStack →</a>
+    </div>
+
+    <div class="card tier2">
+      <div class="card-head"><div class="card-name">Nagarro</div><span class="hiring-pill hiring-remote">Remote/Hybrid</span></div>
+      <div class="card-type">Product Engineering · 18,000+ employees · Pan-India remote</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Remote from Indore accepted</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">QA Automation / SDET</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">5–10 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Remote/Hybrid</span></div>
+      <div class="card-row"><span class="lbl">Salary Est.</span><span class="val">₹12–24 LPA</span></div>
+      <div class="tags">
+        <span class="tag blue">Java</span><span class="tag blue">Selenium</span><span class="tag green">Playwright</span><span class="tag green">AWS</span><span class="tag">Docker</span>
+      </div>
+      <a class="card-link" href="https://www.nagarro.com/en/careers" target="_blank">Apply at Nagarro →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TIER 3 ============ -->
+<div class="section" id="tier3">
+  <div class="section-title">
+    <h2>🔧 Tier 3 – Mid-Sized IT Services Companies in Indore</h2>
+    <span class="tier-badge tier3">Tier 3</span>
+  </div>
+  <div class="section-desc">100–5000 employee firms with dedicated QA teams. Great for QA Lead aspirants, team leads, and those seeking stable WFO/Hybrid roles in Indore.</div>
+  <div class="cards">
+
+    <div class="card tier3">
+      <div class="card-head"><div class="card-name">Softude (Systematix Infotech)</div><span class="hiring-pill hiring-yes">Hiring</span></div>
+      <div class="card-type">IT Services · HQ Indore (rebranded from Systematix 2022) · 378+ employees</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Skye Corporate Park, AB Rd, Indore</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">QA Automation Engineer / SDET</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">5+ years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Hybrid</span></div>
+      <div class="card-row"><span class="lbl">Why Apply</span><span class="val">Strong custom software + cloud portfolio; growing QA team; good work-life balance</span></div>
+      <div class="tags">
+        <span class="tag blue">Selenium</span><span class="tag blue">Java</span><span class="tag">TestNG</span><span class="tag green">Cloud</span><span class="tag">REST API</span>
+      </div>
+      <a class="card-link" href="https://www.softude.com/career/" target="_blank">Apply at Softude →</a>
+    </div>
+
+    <div class="card tier3">
+      <div class="card-head"><div class="card-name">Diaspark</div><span class="hiring-pill hiring-yes">Hiring</span></div>
+      <div class="card-type">IT Services · Product Engineering · Indore HQ · 500–1000 employees</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Indore (HQ)</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">QA Automation / Senior QA Engineer</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">4–8 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Hybrid</span></div>
+      <div class="card-row"><span class="lbl">Domain</span><span class="val">Healthcare, Finance, Retail</span></div>
+      <div class="tags">
+        <span class="tag blue">Selenium</span><span class="tag blue">Java</span><span class="tag green">REST API</span><span class="tag">Agile</span>
+      </div>
+      <a class="card-link" href="https://diaspark.com/careers" target="_blank">Apply at Diaspark →</a>
+    </div>
+
+    <div class="card tier3">
+      <div class="card-head"><div class="card-name">Cyber Infrastructure (CIS)</div><span class="hiring-pill hiring-yes">Hiring</span></div>
+      <div class="card-type">IT Services · Founded 2003 · Electronic Complex, Indore · 1,000+ employees</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">142-A, New IT Park, Electronic Complex, Pardeshipura</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">QA Automation Engineer</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">4–8 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">WFO</span></div>
+      <div class="card-row"><span class="lbl">Domain</span><span class="val">Custom Software, Mobile, IoT, AI</span></div>
+      <div class="tags">
+        <span class="tag blue">Selenium</span><span class="tag blue">Java</span><span class="tag">TestNG</span><span class="tag">SQL</span>
+      </div>
+      <a class="card-link" href="https://www.cyberinfrastructure.com/careers" target="_blank">Apply at CIS →</a>
+    </div>
+
+    <div class="card tier3">
+      <div class="card-head"><div class="card-name">Syntel (Atos)</div><span class="hiring-pill hiring-yes">Hiring</span></div>
+      <div class="card-type">MNC via Atos · Global IT Services · Indore delivery centre</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Indore (Syntel/Atos centre)</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">QA / Automation Test Engineer</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">5–8 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Hybrid</span></div>
+      <div class="card-row"><span class="lbl">Domain</span><span class="val">Banking, Healthcare, Manufacturing</span></div>
+      <div class="tags">
+        <span class="tag blue">Selenium</span><span class="tag blue">Java</span><span class="tag">TestNG</span><span class="tag green">BDD</span>
+      </div>
+      <a class="card-link" href="https://www.atos.net/en/careers" target="_blank">Apply at Atos/Syntel →</a>
+    </div>
+
+    <div class="card tier3">
+      <div class="card-head"><div class="card-name">Hexaware Technologies</div><span class="hiring-pill hiring-remote">Remote/Hybrid</span></div>
+      <div class="card-type">IT Services · 25,000+ employees · Remote hire from Indore</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Pan-India / Remote</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">Test Lead – Selenium / Playwright Testing</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">5–10 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Remote/Hybrid</span></div>
+      <div class="card-row"><span class="lbl">Salary Est.</span><span class="val">₹12–22 LPA (Test Lead)</span></div>
+      <div class="tags">
+        <span class="tag blue">Selenium</span><span class="tag green">Playwright</span><span class="tag blue">Java</span><span class="tag green">BDD</span><span class="tag yellow">QA Lead</span>
+      </div>
+      <a class="card-link" href="https://hexaware.com/careers/" target="_blank">Apply at Hexaware →</a>
+    </div>
+
+    <div class="card tier3">
+      <div class="card-head"><div class="card-name">Deloitte India</div><span class="hiring-pill hiring-yes">Hiring</span></div>
+      <div class="card-type">MNC / Consulting · Pan-India hire · Remote from Indore</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Pan-India (Indore candidates eligible)</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">Senior Consultant – Test Automation (4–6 yrs)</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">4–6 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Hybrid</span></div>
+      <div class="card-row"><span class="lbl">Salary Est.</span><span class="val">₹14–28 LPA</span></div>
+      <div class="tags">
+        <span class="tag blue">Selenium</span><span class="tag blue">Java</span><span class="tag">TestNG</span><span class="tag">Maven</span><span class="tag green">Jenkins</span><span class="tag green">BDD</span>
+      </div>
+      <a class="card-link" href="https://careers.deloitte.com" target="_blank">Apply at Deloitte →</a>
+    </div>
+
+    <div class="card tier3">
+      <div class="card-head"><div class="card-name">Mphasis</div><span class="hiring-pill hiring-yes">Hiring</span></div>
+      <div class="card-type">MNC · IT Services · 30,000+ employees</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Indore (hiring from Indore)</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">QA Automation Engineer</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">5–8 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Hybrid</span></div>
+      <div class="tags">
+        <span class="tag blue">Selenium</span><span class="tag blue">Java</span><span class="tag">TestNG</span>
+      </div>
+      <a class="card-link" href="https://careers.mphasis.com" target="_blank">Apply at Mphasis →</a>
+    </div>
+
+    <div class="card tier3">
+      <div class="card-head"><div class="card-name">GlobalLogic (Hitachi)</div><span class="hiring-pill hiring-remote">Remote/Hybrid</span></div>
+      <div class="card-type">Product Engineering · 27,000+ employees · Remote India hire</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Remote from Indore</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">Test Engineer / SDET</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">5–10 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Remote/Hybrid</span></div>
+      <div class="card-row"><span class="lbl">Salary Est.</span><span class="val">₹14–26 LPA</span></div>
+      <div class="tags">
+        <span class="tag blue">Java</span><span class="tag blue">Selenium</span><span class="tag green">Playwright</span><span class="tag green">AWS</span>
+      </div>
+      <a class="card-link" href="https://www.globallogic.com/careers/" target="_blank">Apply at GlobalLogic →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TIER 4 ============ -->
+<div class="section" id="tier4">
+  <div class="section-title">
+    <h2>🚀 Tier 4 – Startups & Emerging Companies in Indore</h2>
+    <span class="tier-badge tier4">Tier 4</span>
+  </div>
+  <div class="section-desc">Startups and growth-stage companies with engineering teams in Indore scaling QA processes. Best for ownership and rapid growth.</div>
+  <div class="cards">
+
+    <div class="card tier4">
+      <div class="card-head"><div class="card-name">Deqode</div><span class="hiring-pill hiring-yes">Hiring</span></div>
+      <div class="card-type">Product Engineering / Startup · Indore · 100–500 employees</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Indore (HQ)</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">QA Engineer / Automation Engineer</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">3–7 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">Hybrid</span></div>
+      <div class="card-row"><span class="lbl">Why Apply</span><span class="val">Blockchain + Web3 + AI stack; early QA ownership possible</span></div>
+      <div class="tags">
+        <span class="tag blue">Selenium</span><span class="tag blue">Java</span><span class="tag green">REST API</span><span class="tag">Docker</span>
+      </div>
+      <a class="card-link" href="https://deqode.com/careers/" target="_blank">Apply at Deqode →</a>
+    </div>
+
+    <div class="card tier4">
+      <div class="card-head"><div class="card-name">Codezilla</div><span class="hiring-pill hiring-no">Check Site</span></div>
+      <div class="card-type">Startup · Full-cycle Product Dev · Indore · &lt;100 employees</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Indore (HQ)</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">QA Engineer (Full-cycle involvement)</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">2–5 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">WFO</span></div>
+      <div class="card-row"><span class="lbl">Why Apply</span><span class="val">Junior team members get full product lifecycle exposure</span></div>
+      <div class="tags">
+        <span class="tag blue">Selenium</span><span class="tag">Manual</span><span class="tag">Agile</span>
+      </div>
+    </div>
+
+    <div class="card tier4">
+      <div class="card-head"><div class="card-name">Hiteshi Infotech</div><span class="hiring-pill hiring-no">Check Site</span></div>
+      <div class="card-type">IT Services / Startup · Indore · 50–200 employees</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Plot 152, Ratanlok Colony, Vijay Nagar, Indore</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">QA Tester / Automation Engineer</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">3–6 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">WFO</span></div>
+      <div class="tags">
+        <span class="tag blue">Selenium</span><span class="tag">Manual</span><span class="tag">API Testing</span>
+      </div>
+      <a class="card-link" href="https://www.hiteshi.com/career" target="_blank">Apply at Hiteshi →</a>
+    </div>
+
+    <div class="card tier4">
+      <div class="card-head"><div class="card-name">TechInfini Solutions</div><span class="hiring-pill hiring-no">Check Site</span></div>
+      <div class="card-type">IT Services · Crystal IT Park, Indore · 200+ employees</div>
+      <div class="card-row"><span class="lbl">Indore Office</span><span class="val">Crystal IT Park, Bhawarkua Rd, Indore</span></div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">QA Engineer / Software Tester</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">3–6 years</span></div>
+      <div class="card-row"><span class="lbl">Work Mode</span><span class="val">WFO</span></div>
+      <div class="tags">
+        <span class="tag blue">Selenium</span><span class="tag blue">Java</span><span class="tag">Agile</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ TOP 25 HIRING ============ -->
+<div class="section" id="top25hiring">
+  <div class="section-title"><h2>🎯 Top 25 Companies Currently Hiring SDET/QA Automation in Indore</h2></div>
+  <div class="section-desc">Ranked by hiring activity, role relevance for Java+Selenium SDET profiles (5+ years), and Indore-specific openings.</div>
+  <div class="list-section">
+    <div class="list-card">
+      <h3>🔝 Top 10 Most Active Hirers</h3>
+      <ol>
+        <li><strong>TCS</strong> <span>– Java+Selenium, 4–10 yrs, WFO Indore</span></li>
+        <li><strong>Infosys</strong> <span>– SDET/Test Lead, 4–8 yrs</span></li>
+        <li><strong>Accenture</strong> <span>– QA Automation, 3–12 yrs</span></li>
+        <li><strong>Impetus Technologies</strong> <span>– SDET/Lead QE, 5–10 yrs</span></li>
+        <li><strong>InfoBeans</strong> <span>– Java Automation Eng, 6–10 yrs</span></li>
+        <li><strong>YASH Technologies</strong> <span>– 14 active Indore jobs</span></li>
+        <li><strong>Persistent Systems</strong> <span>– SDET/QA Lead, 5–10 yrs</span></li>
+        <li><strong>Cognizant</strong> <span>– QA Automation/SDET</span></li>
+        <li><strong>LTIMindtree</strong> <span>– Automation Lead/SDET</span></li>
+        <li><strong>Capgemini</strong> <span>– Senior Consultant Test Automation</span></li>
+      </ol>
+    </div>
+    <div class="list-card">
+      <h3>📋 Hiring Ranks 11–25</h3>
+      <ol start="11">
+        <li><strong>IBM India</strong> <span>– QA/Automation, 5–10 yrs</span></li>
+        <li><strong>HCLTech</strong> <span>– Test Eng/SDET/QA Lead</span></li>
+        <li><strong>Tech Mahindra</strong> <span>– QA Automation/Perf Test</span></li>
+        <li><strong>Wipro</strong> <span>– QA Automation/Test Lead</span></li>
+        <li><strong>Softude</strong> <span>– QA Automation Eng, 5+ yrs</span></li>
+        <li><strong>Diaspark</strong> <span>– Senior QA Engineer</span></li>
+        <li><strong>NimbleWork</strong> <span>– SDET/Test Automation</span></li>
+        <li><strong>Syntel (Atos)</strong> <span>– QA Automation, 5–8 yrs</span></li>
+        <li><strong>Hexaware</strong> <span>– Test Lead (Remote/Hybrid)</span></li>
+        <li><strong>Deqode</strong> <span>– QA/Automation Eng</span></li>
+        <li><strong>Deloitte India</strong> <span>– Sr. Consultant Test Automation</span></li>
+        <li><strong>Mphasis</strong> <span>– QA Automation, 5–8 yrs</span></li>
+        <li><strong>GlobalLogic</strong> <span>– SDET (Remote)</span></li>
+        <li><strong>Nagarro</strong> <span>– QA/SDET (Remote from Indore)</span></li>
+        <li><strong>Cyber Infrastructure</strong> <span>– QA Automation Eng</span></li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TOP 25 QA TEAMS ============ -->
+<div class="section" id="top25team">
+  <div class="section-title"><h2>🏆 Top 25 Companies with Active QA/SDET Teams in Indore</h2></div>
+  <div class="section-desc">Companies confirmed to have established QA/automation teams (even if not currently hiring) — good for speculative applications and networking.</div>
+  <div class="list-section">
+    <div class="list-card">
+      <h3>🏢 Confirmed QA Teams in Indore</h3>
+      <ol>
+        <li><strong>Impetus Technologies</strong> <span>– Data/Cloud QE team; Fortune 500 clients</span></li>
+        <li><strong>InfoBeans</strong> <span>– Dedicated QA Automation practice; Playwright + CI/CD</span></li>
+        <li><strong>YASH Technologies</strong> <span>– SAP + enterprise QA team</span></li>
+        <li><strong>TCS</strong> <span>– Large QA unit at Crystal IT Park</span></li>
+        <li><strong>Infosys</strong> <span>– SDET + QA delivery team</span></li>
+        <li><strong>Softude (Systematix)</strong> <span>– QA + automation for global clients</span></li>
+        <li><strong>NimbleWork</strong> <span>– Product QA; Java/Selenium/Appium</span></li>
+        <li><strong>Diaspark</strong> <span>– QA team for healthcare/finance</span></li>
+        <li><strong>Cyber Infrastructure</strong> <span>– QA + automation team since 2003</span></li>
+        <li><strong>Accenture</strong> <span>– QA CoE within Indore delivery</span></li>
+        <li><strong>Cognizant</strong> <span>– QA/SDET team Indore</span></li>
+        <li><strong>IBM</strong> <span>– Test automation team Indore</span></li>
+      </ol>
+    </div>
+    <div class="list-card">
+      <h3>🔍 More Companies with QA Teams</h3>
+      <ol start="13">
+        <li><strong>Syntel/Atos</strong> <span>– Legacy QA; banking/healthcare</span></li>
+        <li><strong>TechInfini</strong> <span>– Software QA + test teams</span></li>
+        <li><strong>HCLTech</strong> <span>– Automation + performance testing</span></li>
+        <li><strong>Deqode</strong> <span>– Blockchain/Web3 QA engineers</span></li>
+        <li><strong>Hiteshi Infotech</strong> <span>– QA/testing team Vijay Nagar</span></li>
+        <li><strong>LTIMindtree</strong> <span>– QA delivery + automation leads</span></li>
+        <li><strong>Persistent</strong> <span>– Product QA + SDET capability</span></li>
+        <li><strong>Mango IT Solutions</strong> <span>– QA for web/ecommerce</span></li>
+        <li><strong>Tech Mahindra</strong> <span>– QA + JMeter perf team</span></li>
+        <li><strong>Wipro</strong> <span>– QA automation centre</span></li>
+        <li><strong>Capgemini</strong> <span>– Test automation practice</span></li>
+        <li><strong>ControlF5</strong> <span>– QA/testing small team</span></li>
+        <li><strong>Codezilla</strong> <span>– QA embedded in product dev</span></li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SALARY ============ -->
+<div class="section" id="salary">
+  <div class="section-title"><h2>💰 Salary Guide – QA Automation / SDET in Indore (2026)</h2></div>
+  <div class="section-desc">Based on Glassdoor (April 2026 data), Payscale, and industry benchmarks. Indore salaries are 20–35% lower than Bangalore/Pune for same roles, but cost of living is proportionally lower. Remote roles command metro-equivalent pay.</div>
+
+  <div class="salary-grid" style="margin-bottom:24px;">
+    <div class="salary-card">
+      <div class="role">SDET (Avg, Indore)</div>
+      <div class="range">₹6.8 LPA</div>
+      <div class="unit">Glassdoor median 2026</div>
+      <div class="note">Range: ₹4.8–16.7 LPA (25th–90th pctile)</div>
+    </div>
+    <div class="salary-card">
+      <div class="role">Mid-Level Automation Eng (4–6 yrs)</div>
+      <div class="range">₹8–12 LPA</div>
+      <div class="unit">Typical WFO Indore</div>
+      <div class="note">Product cos: up to ₹15 LPA</div>
+    </div>
+    <div class="salary-card">
+      <div class="role">Senior QA / Sr. SDET (6–10 yrs)</div>
+      <div class="range">₹12–20 LPA</div>
+      <div class="unit">Hybrid / WFO</div>
+      <div class="note">MNCs: ₹14–22 LPA with bonuses</div>
+    </div>
+    <div class="salary-card">
+      <div class="role">QA Lead / Test Lead</div>
+      <div class="range">₹15–25 LPA</div>
+      <div class="unit">Indore Market</div>
+      <div class="note">Automation Lead: up to ₹28 LPA at MNCs</div>
+    </div>
+    <div class="salary-card">
+      <div class="role">QA Architect / Test Architect</div>
+      <div class="range">₹22–35 LPA</div>
+      <div class="unit">Rare in Indore WFO</div>
+      <div class="note">Usually remote roles at premium companies</div>
+    </div>
+    <div class="salary-card">
+      <div class="role">Remote SDET (Metro Pay)</div>
+      <div class="range">₹18–30 LPA</div>
+      <div class="unit">From Indore, remote</div>
+      <div class="note">BrowserStack, Thoughtworks, GlobalLogic</div>
+    </div>
+    <div class="salary-card">
+      <div class="role">Dual-Tool (Selenium + Playwright)</div>
+      <div class="range">₹18–30 LPA</div>
+      <div class="unit">15–25% premium</div>
+      <div class="note">vs ₹12–20 LPA Selenium-only</div>
+    </div>
+    <div class="salary-card">
+      <div class="role">QA Lead (10+ yrs)</div>
+      <div class="range">₹18–28 LPA</div>
+      <div class="unit">Industry benchmark</div>
+      <div class="note">Lead + perf testing commands max range</div>
+    </div>
+  </div>
+
+  <div class="alert alert-info">📈 <strong>Salary Boost Tips:</strong> Add Playwright or Cypress to your Java+Selenium profile for 15–25% higher offers. Docker, Kubernetes, and AWS knowledge pushes into the ₹18–25 LPA range. BDD/Cucumber + performance testing (JMeter) qualifies you for QA Lead / SDET Architect roles.</div>
+</div>
+
+<!-- ============ SPECIAL FOCUS LISTS ============ -->
+<div class="section" id="special">
+  <div class="section-title"><h2>🎯 Special Focus Lists</h2></div>
+  <div class="list-section">
+
+    <div class="list-card">
+      <h3>☕ Best for Java + Selenium + TestNG</h3>
+      <ol>
+        <li><strong>TCS</strong> <span>– Core Java+Selenium+TestNG stack</span></li>
+        <li><strong>Infosys</strong> <span>– TestNG + CI/CD mandatory</span></li>
+        <li><strong>Impetus</strong> <span>– Java+Selenium+TestNG+Docker</span></li>
+        <li><strong>Capgemini</strong> <span>– Maven+TestNG+Jenkins</span></li>
+        <li><strong>YASH Technologies</strong> <span>– JUnit + Selenium automation</span></li>
+        <li><strong>InfoBeans</strong> <span>– Java+Selenium+CI/CD</span></li>
+        <li><strong>Softude</strong> <span>– Core Selenium+TestNG stack</span></li>
+        <li><strong>Deloitte</strong> <span>– Maven+TestNG+BDD</span></li>
+      </ol>
+    </div>
+
+    <div class="list-card">
+      <h3>🎭 Companies Using Playwright or Cypress</h3>
+      <ol>
+        <li><strong>InfoBeans</strong> <span>– Playwright + CI/CD (primary)</span></li>
+        <li><strong>Persistent Systems</strong> <span>– Playwright + Selenium dual</span></li>
+        <li><strong>Thoughtworks</strong> <span>– Cypress + Playwright (TDD-first)</span></li>
+        <li><strong>BrowserStack</strong> <span>– All frameworks incl. Playwright</span></li>
+        <li><strong>Nagarro</strong> <span>– Playwright + AWS</span></li>
+        <li><strong>LTIMindtree</strong> <span>– Cypress + Selenium</span></li>
+        <li><strong>Hexaware</strong> <span>– Selenium + Playwright both</span></li>
+        <li><strong>GlobalLogic</strong> <span>– Playwright + AWS + Java</span></li>
+      </ol>
+    </div>
+
+    <div class="list-card">
+      <h3>👑 QA Lead / Test Architect Roles</h3>
+      <ol>
+        <li><strong>Thoughtworks</strong> <span>– QA Lead / Test Architect</span></li>
+        <li><strong>Impetus</strong> <span>– Lead QE Automation</span></li>
+        <li><strong>LTIMindtree</strong> <span>– Test Automation Lead</span></li>
+        <li><strong>Hexaware</strong> <span>– Test Lead (Selenium+Playwright)</span></li>
+        <li><strong>Persistent Systems</strong> <span>– QA Lead</span></li>
+        <li><strong>GlobalLogic</strong> <span>– SDET / Lead</span></li>
+        <li><strong>InfoBeans</strong> <span>– QA Lead (internal growth)</span></li>
+        <li><strong>HCLTech</strong> <span>– QA Lead + Test Architect</span></li>
+      </ol>
+    </div>
+
+    <div class="list-card">
+      <h3>💰 Highest-Paying SDET Opportunities</h3>
+      <ol>
+        <li><strong>Thoughtworks</strong> <span>– ₹18–35 LPA (Lead/Architect)</span></li>
+        <li><strong>BrowserStack</strong> <span>– ₹18–30 LPA (Remote SDET)</span></li>
+        <li><strong>Deloitte</strong> <span>– ₹14–28 LPA (Sr. Consultant)</span></li>
+        <li><strong>Accenture</strong> <span>– ₹10–22 LPA (senior)</span></li>
+        <li><strong>GlobalLogic</strong> <span>– ₹14–26 LPA (Remote)</span></li>
+        <li><strong>Nagarro</strong> <span>– ₹12–24 LPA</span></li>
+        <li><strong>Persistent</strong> <span>– ₹12–22 LPA</span></li>
+        <li><strong>Impetus</strong> <span>– ₹10–22 LPA (Indore WFO)</span></li>
+      </ol>
+    </div>
+
+    <div class="list-card">
+      <h3>🌐 Remote Companies Hiring from Indore</h3>
+      <ol>
+        <li><strong>BrowserStack</strong> <span>– Fully remote, SDET focus</span></li>
+        <li><strong>Thoughtworks</strong> <span>– Remote/Hybrid, QA Lead</span></li>
+        <li><strong>GlobalLogic (Hitachi)</strong> <span>– Remote India SDET</span></li>
+        <li><strong>Nagarro</strong> <span>– Remote QA/SDET India</span></li>
+        <li><strong>Hexaware</strong> <span>– Remote/Hybrid Test Lead</span></li>
+        <li><strong>Sophos</strong> <span>– Remote SDET / Security QA</span></li>
+        <li><strong>Deloitte</strong> <span>– Hybrid (Indore eligible)</span></li>
+        <li><strong>Mphasis</strong> <span>– Hybrid pan-India QA</span></li>
+        <li><strong>Newt Global</strong> <span>– Remote India QA Automation</span></li>
+        <li><strong>Upwork/Toptal</strong> <span>– Freelance QA consulting</span></li>
+      </ol>
+    </div>
+
+    <div class="list-card">
+      <h3>🏆 Best Product-Based Companies for QA</h3>
+      <ol>
+        <li><strong>Impetus Technologies</strong> <span>– Data/Cloud product QE</span></li>
+        <li><strong>InfoBeans</strong> <span>– QA Automation packages</span></li>
+        <li><strong>NimbleWork</strong> <span>– SaaS product QA</span></li>
+        <li><strong>BrowserStack</strong> <span>– QA tooling product itself</span></li>
+        <li><strong>Thoughtworks</strong> <span>– Product Engineering culture</span></li>
+        <li><strong>Persistent</strong> <span>– Product Engineering + SDET</span></li>
+        <li><strong>Deqode</strong> <span>– Web3/Blockchain product QA</span></li>
+        <li><strong>Sophos</strong> <span>– Security product SDET</span></li>
+      </ol>
+    </div>
+
+    <div class="list-card">
+      <h3>✅ Best for 5–7 Years Experience</h3>
+      <ol>
+        <li><strong>InfoBeans</strong> <span>– 6–10 yrs Java Automation Eng</span></li>
+        <li><strong>Impetus</strong> <span>– 5–10 yrs SDET/Lead QE</span></li>
+        <li><strong>TCS</strong> <span>– 4–10 yrs SE (Automation)</span></li>
+        <li><strong>Persistent</strong> <span>– 5–10 yrs SDET/QA Lead</span></li>
+        <li><strong>Capgemini</strong> <span>– 4–6 yrs Sr. Consultant</span></li>
+        <li><strong>Deloitte</strong> <span>– 4–6 yrs Sr. Consultant</span></li>
+        <li><strong>NimbleWork</strong> <span>– 3–7 yrs Test Automation</span></li>
+        <li><strong>Nagarro</strong> <span>– 5–10 yrs SDET (Remote)</span></li>
+      </ol>
+    </div>
+
+    <div class="list-card">
+      <h3>📈 Best SDET Career Path Companies</h3>
+      <ol>
+        <li><strong>Thoughtworks</strong> <span>– Industry-leading QA/SDET path</span></li>
+        <li><strong>BrowserStack</strong> <span>– SDET at a QA product company</span></li>
+        <li><strong>Impetus</strong> <span>– SDET → Lead QE → QA Architect</span></li>
+        <li><strong>InfoBeans</strong> <span>– SDET → QA Lead → Delivery Director</span></li>
+        <li><strong>Persistent</strong> <span>– Clear SDET track</span></li>
+        <li><strong>GlobalLogic</strong> <span>– SDET leadership track</span></li>
+        <li><strong>Nagarro</strong> <span>– Engineering-first SDET growth</span></li>
+        <li><strong>IBM / Accenture</strong> <span>– QA Lead → Manager path</span></li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ============ REMOTE ============ -->
+<div class="section" id="remote">
+  <div class="section-title"><h2>🌐 Remote & Hybrid Companies Hiring Experienced QA from Indore</h2></div>
+  <div class="section-desc">Indore-based candidates can access metro-level salaries through remote roles. Cities like Bangalore, Pune, Hyderabad offer 20–40% higher QA packages; remote work bridges this gap.</div>
+
+  <div class="cards">
+    <div class="card tier2">
+      <div class="card-head"><div class="card-name">BrowserStack</div><span class="hiring-pill hiring-remote">Fully Remote</span></div>
+      <div class="card-type">SaaS / Test Infrastructure · Mumbai HQ · Remote India</div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">SDET / Senior SDET</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">4–8 years</span></div>
+      <div class="card-row"><span class="lbl">Salary</span><span class="val">₹18–30 LPA</span></div>
+      <div class="card-row"><span class="lbl">Why Best</span><span class="val">QA product company; Indore QA meetup partner; cutting-edge SDET work</span></div>
+      <div class="tags"><span class="tag hot">Best Remote Pick</span><span class="tag blue">Selenium</span><span class="tag green">Playwright</span><span class="tag">Appium</span></div>
+      <a class="card-link" href="https://www.browserstack.com/careers" target="_blank">Apply →</a>
+    </div>
+
+    <div class="card tier2">
+      <div class="card-head"><div class="card-name">Thoughtworks India</div><span class="hiring-pill hiring-remote">Remote/Hybrid</span></div>
+      <div class="card-type">Product Engineering · Hybrid India</div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">QA Lead / SDET / Test Architect</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">5–12 years</span></div>
+      <div class="card-row"><span class="lbl">Salary</span><span class="val">₹18–35 LPA</span></div>
+      <div class="card-row"><span class="lbl">Why Best</span><span class="val">Industry's best QA engineering culture; TDD/BDD first; Cypress+Playwright</span></div>
+      <div class="tags"><span class="tag hot">Premium Culture</span><span class="tag blue">Java</span><span class="tag green">Cypress</span><span class="tag green">Playwright</span></div>
+      <a class="card-link" href="https://www.thoughtworks.com/careers/india" target="_blank">Apply →</a>
+    </div>
+
+    <div class="card tier2">
+      <div class="card-head"><div class="card-name">GlobalLogic (Hitachi)</div><span class="hiring-pill hiring-remote">Remote India</span></div>
+      <div class="card-type">Product Engineering · 27,000+ employees</div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">SDET / Test Engineer</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">5–10 years</span></div>
+      <div class="card-row"><span class="lbl">Salary</span><span class="val">₹14–26 LPA</span></div>
+      <div class="tags"><span class="tag blue">Java</span><span class="tag blue">Selenium</span><span class="tag green">Playwright</span><span class="tag green">AWS</span></div>
+      <a class="card-link" href="https://www.globallogic.com/careers/" target="_blank">Apply →</a>
+    </div>
+
+    <div class="card tier2">
+      <div class="card-head"><div class="card-name">Nagarro</div><span class="hiring-pill hiring-remote">Remote/Hybrid</span></div>
+      <div class="card-type">Product Engineering · 18,000+ employees</div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">QA Automation / SDET</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">5–10 years</span></div>
+      <div class="card-row"><span class="lbl">Salary</span><span class="val">₹12–24 LPA</span></div>
+      <div class="tags"><span class="tag blue">Java</span><span class="tag blue">Selenium</span><span class="tag green">Playwright</span><span class="tag green">AWS</span></div>
+      <a class="card-link" href="https://www.nagarro.com/en/careers" target="_blank">Apply →</a>
+    </div>
+
+    <div class="card tier3">
+      <div class="card-head"><div class="card-name">Hexaware Technologies</div><span class="hiring-pill hiring-remote">Remote/Hybrid</span></div>
+      <div class="card-type">IT Services · Test Lead roles remote</div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">Test Lead – Selenium/Playwright</span></div>
+      <div class="card-row"><span class="lbl">Salary</span><span class="val">₹12–22 LPA</span></div>
+      <div class="tags"><span class="tag blue">Selenium</span><span class="tag green">Playwright</span><span class="tag yellow">QA Lead</span></div>
+      <a class="card-link" href="https://hexaware.com/careers/" target="_blank">Apply →</a>
+    </div>
+
+    <div class="card tier3">
+      <div class="card-head"><div class="card-name">Sophos</div><span class="hiring-pill hiring-remote">Remote India</span></div>
+      <div class="card-type">Security SaaS · Remote SDET roles</div>
+      <div class="card-row"><span class="lbl">Role</span><span class="val">SDET / Senior QA Automation</span></div>
+      <div class="card-row"><span class="lbl">Experience</span><span class="val">5–8 years</span></div>
+      <div class="card-row"><span class="lbl">Why Apply</span><span class="val">Security domain; Docker/container-heavy; niche = less competition</span></div>
+      <div class="tags"><span class="tag blue">Java</span><span class="tag blue">Selenium</span><span class="tag">Security Testing</span><span class="tag green">Docker</span></div>
+      <a class="card-link" href="https://www.sophos.com/en-us/company/careers" target="_blank">Apply →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ STRATEGY TIPS ============ -->
+<div class="section" id="tips">
+  <div class="section-title"><h2>💡 Job Search Strategy Tips for Indore QA Professionals</h2></div>
+  <div class="tips">
+    <h3>🎯 Action Plan for 5+ Year SDET/QA Automation Professionals</h3>
+    <div class="tip-item"><span class="tip-icon">1️⃣</span><div><strong>Prioritise Impetus + InfoBeans first</strong> — These are Indore's strongest local employers for experienced QA automation. Both have dedicated QA Automation practices and hire 6–10 yr Java+Selenium profiles regularly. Apply directly at impetus.com/careers and infobeans.com/current-openings.</div></div>
+    <div class="tip-item"><span class="tip-icon">2️⃣</span><div><strong>TCS is actively hiring in Indore for Selenium+Java</strong> — Naukri shows Selenium openings specifically tied to Indore/TCS. Apply via tcs.com/careers/india/lateral-hiring and also on Naukri with location filter "Indore" + "Selenium".</div></div>
+    <div class="tip-item"><span class="tip-icon">3️⃣</span><div><strong>Add Playwright to your profile NOW</strong> — InfoBeans, Persistent, Hexaware, Nagarro, and GlobalLogic all prefer Selenium+Playwright dual-skill candidates and pay 15–25% more. Even 1–2 personal projects with Playwright can differentiate you.</div></div>
+    <div class="tip-item"><span class="tip-icon">4️⃣</span><div><strong>Target remote roles for maximum pay</strong> — BrowserStack (~₹18–30 LPA), Thoughtworks (~₹18–35 LPA), GlobalLogic (~₹14–26 LPA) allow Indore residency. Remote income with Indore cost of living is the optimal financial strategy.</div></div>
+    <div class="tip-item"><span class="tip-icon">5️⃣</span><div><strong>Use Instahyre and Naukri simultaneously</strong> — InfoBeans and NimbleWork actively post on Instahyre (instahyre.com/job-393440). Naukri shows ~98 Selenium jobs in Indore. Set job alerts on both platforms daily.</div></div>
+    <div class="tip-item"><span class="tip-icon">6️⃣</span><div><strong>LinkedIn "Easy Apply" for MNC roles</strong> — Accenture, Cognizant, Capgemini, LTIMindtree all post on LinkedIn with Easy Apply. Search "QA automation Indore" or "SDET Indore" filtered to "Past Month" for the freshest openings.</div></div>
+    <div class="tip-item"><span class="tip-icon">7️⃣</span><div><strong>Network at QA meetups</strong> — InfoBeans hosts BrowserStack QA meetups at Crystal IT Park. Attending these gets you direct contact with hiring managers. Check infobeans.ai/events for upcoming sessions.</div></div>
+    <div class="tip-item"><span class="tip-icon">8️⃣</span><div><strong>Frame yourself as SDET, not "Tester"</strong> — Market data confirms SDET titles command higher pay. If your work involves framework development, CI/CD integration, or code reviews — use "SDET" or "Test Automation Engineer" in your profile title.</div></div>
+  </div>
+
+  <div style="margin-top:24px;">
+    <div class="alert alert-warn">⚡ <strong>Quick Apply Links to Bookmark:</strong>
+      Naukri Selenium Indore → naukri.com/selenium-jobs-in-indore &nbsp;|&nbsp;
+      Naukri Automation Testing Indore → naukri.com/automation-testing-jobs-in-indore &nbsp;|&nbsp;
+      LinkedIn SDET Indore → linkedin.com/jobs (search "SDET Indore") &nbsp;|&nbsp;
+      Instahyre → instahyre.com (search "QA Indore")
+    </div>
+  </div>
+
+  <div style="margin-top:16px; padding:16px; background:var(--surface); border:1px solid var(--border); border-radius:8px; font-size:12px; color:var(--text-muted);">
+    <strong style="color:var(--text)">📅 Report Date:</strong> June 2026 &nbsp;|&nbsp;
+    <strong style="color:var(--text)">Data Sources:</strong> LinkedIn, Naukri.com, Glassdoor, Instahyre, Payscale, company career pages, SoftwareTestingEdu, TestDino, LeadWithSkills &nbsp;|&nbsp;
+    <strong style="color:var(--text)">Note:</strong> Hiring status changes frequently. Verify all openings directly on company career pages before applying. Salary figures are market estimates and may vary by company, band, and negotiation.
+  </div>
+</div>
+
+</body>
+</html>
